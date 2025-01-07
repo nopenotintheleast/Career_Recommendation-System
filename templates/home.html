@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* Default Theme Colors */
+:root {
+  --bg-color: #121212;
+  --text-color: #ffe2f3;
+  --btn-bg: #80004c; /* Pansy Purple */
+  --btn-text: #ffbbe3;
+  --footer-bg: #80004c; /* Pansy Purple */
+  --footer-text: #ffe2f3;
+  --background-image: url('/static/img0.jpg'); 
+}
+
+/* Light Theme Overrides */
+[data-bs-theme="light"] {
+  --bg-color: #121212;
+  --text-color: #fff0f5;
+  --btn-bg: #ff6cc3; /* light pink */
+  --btn-text: #fff0f5;
+  --footer-bg: #ff6cc3; /* light pink */
+  --footer-text: #121212;
+  --background-image: url('/static/img0.jpg'); 
+}
+
+/* Dark Theme Overrides */
+[data-bs-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffe2f3;
+  --btn-bg: #80004c; /* Pansy Purple */
+  --btn-text: #ffe2f3;
+  --footer-bg: #80004c; /* Pansy Purple */
+  --footer-text: #ffe2f3;
+  --background-image: url('/static/img0.jpg'); 
+}
+
+/* Apply background color, image and reduce brightness of the background image */
+body {
+  background-color: var(--bg-color);
+  background-image: var(--background-image); /* Dynamically change the background */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text-color);
+  position: relative; /* Ensure it works well with pseudo-elements */
+}
+
+/* Add a pseudo-element to apply the brightness effect */
+body::before {
+  content: ''; /* Empty content */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5); /* Adjust this value to reduce brightness */
+  z-index: -1; /* Place it behind the content */
+}
+
+/* Header Button Styles */
+/* Ensure all nav links (buttons) are styled */
+.nav-masthead .nav-link {
+  background-color: transparent;
+  color: var(--text-color); /* Text color based on theme */
+  padding: 10px 20px; /* Add more padding for better button sizing */
+  border-radius: 30px; /* Make it pill-shaped */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  margin-right: 15px; /* Add space between buttons */
+}
+
+/* Hover or focus effect for buttons */
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  background-color: var(--btn-bg); /* Background color change */
+  color: var(--btn-text); /* Text color change */
+  transform: scale(1.05); /* Slightly increase the size on hover for effect */
+}
+
+/* Active button (highlighted) */
+.nav-masthead .active {
+  background-color: var(--btn-bg); /* Active button background */
+  color: var(--btn-text); /* Active button text color */
+  font-weight: bold; /* Make the active link bold */
+  transform: scale(1.05); /* Active state also has a little hover effect */
+}
+
+/* Remove margin-right for the last button */
+.nav-masthead .nav-link:last-child {
+  margin-right: 0;
+}
+
+
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+}
+
+/* Style the My Career button to match the header buttons */
+.btn-custom {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  padding: 12px 30px; /* Adjust padding for better sizing */
+  border-radius: 20px 20px 0 0; /* Rounded top with flat bottom */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
+  font-weight: bold;
+}
+
+/* Hover effect for My Career button */
+.btn-custom:hover {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
+
+    </style>
+      
+  </head>
+  <body class="d-flex h-100 text-center">
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+      <button
+        class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        aria-label="Toggle theme (auto)"
+      >
+        <i class="bi bi-circle-half"></i>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="light"
+            aria-pressed="false"
+          >
+            <i class="bi bi-sun-fill me-2"></i>
+            Light
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center"
+            data-bs-theme-value="dark"
+            aria-pressed="false"
+          >
+            <i class="bi bi-moon-stars-fill me-2"></i>
+            Dark
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            class="dropdown-item d-flex align-items-center active"
+            data-bs-theme-value="auto"
+            aria-pressed="true"
+          >
+            <i class="bi bi-circle-half me-2"></i>
+            Auto
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+              <h3 class="float-md-start mb-0">Career Recommendation</h3>
+              <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
+                <a class="nav-link fw-bold py-1 px-0" href="/features">Features</a>
+                <a class="nav-link fw-bold py-1 px-0" href="/contact">Contact</a>
+              </nav>
+            </div>
+          </header>
+          
+
+      <main class="px-3">
+        <h1>Get your future sorted easily.</h1>
+        <p class="lead">
+          Welcome to your personalized career recommendation portal! Discover opportunities tailored to your
+          skills, interests, and goals. Let us guide you toward your ideal career path with expert insights and
+          data-driven suggestions. Begin your journey to success today!
+        </p>
+        <p class="lead">
+          <a href="/recommend" class="btn btn-custom fw-bold">My Career</a>
+        </p>
+      </main>
+
+      <footer class="mt-auto text-center p-3">
+        <p>
+            © Crafting Careers with Machine Learning | Developed with ❤️ by ANANYAA RP.
+        </p>
+      </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Theme Toggle Logic
+      document.querySelectorAll("[data-bs-theme-value]").forEach((themeButton) => {
+        themeButton.addEventListener("click", () => {
+          const theme = themeButton.getAttribute("data-bs-theme-value");
+          document.documentElement.setAttribute("data-bs-theme", theme);
+
+          // Mark the clicked button as active
+          document.querySelectorAll("[data-bs-theme-value]").forEach((btn) => {
+            btn.setAttribute("aria-pressed", btn === themeButton ? "true" : "false");
+            btn.classList.toggle("active", btn === themeButton);
+          });
+        });
+      });
+
+      // Background image rotation with smooth transitions
+const backgroundImages = [
+  '/static/img0.jpg',
+  '/static/img1.jpg',
+  '/static/img2.jpeg',
+  '/static/img3.jpg',
+];
+
+let currentIndex = 0;
+
+function changeBackgroundImage() {
+  const body = document.body;
+
+  // Trigger fade-out
+  body.classList.add('transitioning');
+
+  // Wait for the fade-out to complete, then change the image
+  setTimeout(() => {
+    body.style.setProperty('--background-image', `url(${backgroundImages[currentIndex]})`);
+    currentIndex = (currentIndex + 1) % backgroundImages.length; // Cycle through images
+
+    // Trigger fade-in
+    body.classList.remove('transitioning');
+  }, 1000); // Match the transition duration in CSS (1s)
+}
+
+// Initial call to set the background
+changeBackgroundImage();
+
+// Change the image every 4 seconds
+setInterval(changeBackgroundImage, 4000);
+
+    </script>
+  </body>
+</html>

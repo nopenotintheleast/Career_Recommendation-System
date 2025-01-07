@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Career Recommendation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        /* Default Theme Colors */
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffe2f3;
+            --btn-bg: #80004c; /* Pansy Purple */
+            --btn-text: #ffbbe3;
+            --footer-bg: #80004c; /* Pansy Purple */
+            --footer-text: #ffe2f3;
+            --background-image: url('/static/img0.jpg'); 
+        }
+
+        /* Light Theme Overrides */
+        [data-bs-theme="light"] {
+            --bg-color: #fff;
+            --text-color: #121212;
+            --btn-bg: #ff6cc3; /* light pink */
+            --btn-text: #fff0f5;
+            --footer-bg: #ff6cc3; /* light pink */
+            --footer-text: #121212;
+            --background-image: url('/static/img0.jpg'); 
+        }
+
+        /* Header Text Color in Light Theme */
+        [data-bs-theme="light"] header h3 {
+            color: #fff0f5; /* Header text color */
+        }
+
+        /* Change Text Color for Navigation Buttons (Home, Feature, Contact) */
+        [data-bs-theme="light"] nav a {
+            --text-color: #fff0f5;
+            color: #fff0f5; /* Button text color */
+        }
+                /* Light Theme: Text Color Inside Form Fields */
+        [data-bs-theme="light"] .form-control {
+            color: #fff0f5; /* Default text color in light theme */
+        }
+
+        /* Change text color to #121212 when the user is typing (focused) */
+        [data-bs-theme="light"] .form-control:focus {
+            color: #121212; /* Text color when focused */
+        }
+
+        /* For Dropdowns (select element) in light theme */
+        [data-bs-theme="light"] .form-control option {
+            color: #fff0f5; /* Text color for options in dropdown */
+        }
+
+        /* Change selected option color to #121212 when clicked (focused) */
+        [data-bs-theme="light"] .form-control:focus option {
+            color: #121212; /* Text color for selected option */
+        }
+
+
+
+        /* Dark Theme Overrides */
+        [data-bs-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffe2f3;
+            --btn-bg: #80004c; /* Pansy Purple */
+            --btn-text: #ffe2f3;
+            --footer-bg: #80004c; /* Pansy Purple */
+            --footer-text: #ffe2f3;
+            --background-image: url('/static/img0.jpg'); 
+        }
+
+        /* Body Background */
+        body {
+            background-color: var(--bg-color);
+            background-image: var(--background-image); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: var(--background-image);
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.5);
+            z-index: -1;
+        }
+
+        /* Header and Theme Toggle */
+        .nav-masthead .nav-link {
+            background-color: transparent;
+            color: var(--text-color); 
+            padding: 10px 20px; 
+            border-radius: 30px; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+            margin-right: 15px; 
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+            background-color: var(--btn-bg);
+            color: var(--btn-text); 
+            transform: scale(1.05); 
+        }
+
+        .nav-masthead .active {
+            background-color: var(--btn-bg); 
+            color: var(--btn-text); 
+            font-weight: bold; 
+            transform: scale(1.05);
+        }
+
+        .nav-masthead .nav-link:last-child {
+            margin-right: 0;
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: var(--bg-color);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container h2 {
+            color: var(--text-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            background-color: #333;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .form-control[readonly] {
+            background-color: #555;
+        }
+
+        /* Custom Submit Button */
+        .btn-custom {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            padding: 12px 30px;
+            border-radius: 30px; /* Same as header buttons */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .btn-custom:hover {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            transform: scale(1.05); 
+        }
+
+        .form-row .col-md-6 {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body class="d-flex h-100 text-center">
+
+    <!-- Theme Toggle Button -->
+    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+        <button
+            class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+            id="bd-theme"
+            type="button"
+            aria-expanded="false"
+            data-bs-toggle="dropdown"
+            aria-label="Toggle theme (auto)"
+        >
+            <i class="bi bi-circle-half"></i>
+            <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+            <li>
+                <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center"
+                    data-bs-theme-value="light"
+                    aria-pressed="false"
+                >
+                    <i class="bi bi-sun-fill me-2"></i>
+                    Light
+                </button>
+            </li>
+            <li>
+                <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center"
+                    data-bs-theme-value="dark"
+                    aria-pressed="false"
+                >
+                    <i class="bi bi-moon-stars-fill me-2"></i>
+                    Dark
+                </button>
+            </li>
+            <li>
+                <button
+                    type="button"
+                    class="dropdown-item d-flex align-items-center active"
+                    data-bs-theme-value="auto"
+                    aria-pressed="true"
+                >
+                    <i class="bi bi-circle-half me-2"></i>
+                    Auto
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <h3 class="float-md-start mb-0">Career Recommendation</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <a class="nav-link fw-bold py-1 px-0 active"  href="/">Home</a>
+                    <a class="nav-link fw-bold py-1 px-0" href="/features">Features</a>
+                    <a class="nav-link fw-bold py-1 px-0" href="/contact">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Form Start -->
+        <div class="form-container">
+            <h2>Recommendation Form</h2>
+            <form method="post" action="/pred">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="gender">Gender:</label>
+                            <select class="form-control" id="gender" name="gender" required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="part_time_job">Part-Time Job:</label>
+                            <select class="form-control" id="part_time_job" name="part_time_job" required>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="absence_days">Absence Days:</label>
+                            <input type="number" class="form-control" id="absence_days" name="absence_days" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="extracurricular_activities">Extracurricular Activities:</label>
+                            <select class="form-control" id="extracurricular_activities" name="extracurricular_activities" required>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="weekly_self_study_hours">Weekly Self-Study Hours:</label>
+                            <input type="number" class="form-control" id="weekly_self_study_hours" name="weekly_self_study_hours" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="physics_score">Physics Score:</label>
+                            <input type="number" class="form-control" id="physics_score" name="physics_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="chemistry_score">Chemistry Score:</label>
+                            <input type="number" class="form-control" id="chemistry_score" name="chemistry_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="math_score">Math Score:</label>
+                            <input type="number" class="form-control" id="math_score" name="math_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="biology_score">Biology Score:</label>
+                            <input type="number" class="form-control" id="biology_score" name="biology_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="history_score">History Score:</label>
+                            <input type="number" class="form-control" id="history_score" name="history_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="geography_score">Geography Score:</label>
+                            <input type="number" class="form-control" id="geography_score" name="geography_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="english_score">English Score:</label>
+                            <input type="number" class="form-control" id="english_score" name="english_score" onchange="calculateScores()" required>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="total_score">Total Score:</label>
+                            <input type="number" class="form-control" id="total_score" name="total_score" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="average_score">Average Score:</label>
+                            <input type="number" step="0.000001" class="form-control" id="average_score" name="average_score" readonly>
+                        </div>
+                    </div>
+                </div>
+            
+                <button type="submit" class="btn btn-custom w-80">Submit</button>
+                <button type="reset" class="btn btn-custom w-80">Clear</button>
+            </form>
+        </div>
+        <!-- Form End -->
+
+        <footer>
+            <p>© 2024 Career Recommendation. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+       // Theme Toggle Logic
+      document.querySelectorAll("[data-bs-theme-value]").forEach((themeButton) => {
+        themeButton.addEventListener("click", () => {
+          const theme = themeButton.getAttribute("data-bs-theme-value");
+          document.documentElement.setAttribute("data-bs-theme", theme);
+
+          document.querySelectorAll("[data-bs-theme-value]").forEach((btn) => {
+            btn.setAttribute("aria-pressed", btn === themeButton ? "true" : "false");
+            btn.classList.toggle("active", btn === themeButton);
+          });
+        });
+      });
+    </script>
+
+    <!-- Script Function for Score Calculation -->
+    <script>
+        function calculateScores() {
+            const mathScore = parseFloat(document.getElementById("math_score").value) || 0;
+            const historyScore = parseFloat(document.getElementById("history_score").value) || 0;
+            const physicsScore = parseFloat(document.getElementById("physics_score").value) || 0;
+            const chemistryScore = parseFloat(document.getElementById("chemistry_score").value) || 0;
+            const biologyScore = parseFloat(document.getElementById("biology_score").value) || 0;
+            const englishScore = parseFloat(document.getElementById("english_score").value) || 0;
+            const geographyScore = parseFloat(document.getElementById("geography_score").value) || 0;
+
+            const totalScore = mathScore + historyScore + physicsScore + chemistryScore + biologyScore + englishScore + geographyScore;
+            const averageScore = totalScore / 7;
+
+            document.getElementById("total_score").value = totalScore.toFixed(2);
+            document.getElementById("average_score").value = averageScore.toFixed(2);
+        }
+    </script>
+
+
+</body>
+</html>
