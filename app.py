@@ -1,3 +1,7 @@
+# pip install scikit-learn==1.5.2
+# pip install numpy
+# pip install flask
+
 # load packages==============================================================
 from flask import Flask, render_template, request
 import pickle
