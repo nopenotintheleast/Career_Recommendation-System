@@ -1,0 +1,8 @@
+step 01: either download the zip file or clone the repository
+step 02: open vs code and open the folder containing this project
+step 03: install the requisites mentioned in the app.py file, scikit learn, numpy,and flask
+step 04: close the editor and reopen it freshly
+step 05: go to app.py file and click run on it
+step 06: in the terminal, you will find an ip address eg., http://127.0.0.1:5000
+step 07: ctrl+click on that link, home page will be opened in the browser. You are now done with setting up and running the app! 
+step 08: after closing the browser tab, come back to editor and press ctrl+c in the terminal to stop the running app. (this step is mandatory or else you system may slow down!)
